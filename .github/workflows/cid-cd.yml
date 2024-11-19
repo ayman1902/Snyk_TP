@@ -25,7 +25,7 @@ jobs:
         run: mvn clean compile
         
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # Updated version to v3
         with:
           name: target
           path: target/
@@ -47,7 +47,7 @@ jobs:
         run: mvn test
         
       - name: Upload test reports
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # Updated version to v3
         with:
           name: surefire-reports
           path: target/surefire-reports/
@@ -71,7 +71,7 @@ jobs:
         run: snyk monitor --all-projects
 
       - name: Upload Snyk report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # Updated version to v3
         with:
           name: snyk-report
           path: snyk-report.json
@@ -93,7 +93,7 @@ jobs:
         run: mvn package -DskipTests
         
       - name: Upload packaged JARs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # Updated version to v3
         with:
           name: jar-files
           path: target/*.jar
