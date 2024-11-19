@@ -15,17 +15,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         
-      - name: Set up JDK 11
+      - name: Set up JDK 11 (Adoptium)
         uses: actions/setup-java@v2
         with:
           java-version: '11'
-          distribution: 'adoptopenjdk'
-
+          distribution: 'adoptium'  # Corrected to 'adoptium'
+          
       - name: Build with Maven
         run: mvn clean compile
         
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3  # Updated version to v3
+        uses: actions/upload-artifact@v3
         with:
           name: target
           path: target/
@@ -37,17 +37,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up JDK 11
+      - name: Set up JDK 11 (Adoptium)
         uses: actions/setup-java@v2
         with:
           java-version: '11'
-          distribution: 'adoptopenjdk'
-
+          distribution: 'adoptium'
+        
       - name: Run unit tests
         run: mvn test
         
       - name: Upload test reports
-        uses: actions/upload-artifact@v3  # Updated version to v3
+        uses: actions/upload-artifact@v3
         with:
           name: surefire-reports
           path: target/surefire-reports/
@@ -71,7 +71,7 @@ jobs:
         run: snyk monitor --all-projects
 
       - name: Upload Snyk report
-        uses: actions/upload-artifact@v3  # Updated version to v3
+        uses: actions/upload-artifact@v3
         with:
           name: snyk-report
           path: snyk-report.json
@@ -83,17 +83,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         
-      - name: Set up JDK 11
+      - name: Set up JDK 11 (Adoptium)
         uses: actions/setup-java@v2
         with:
           java-version: '11'
-          distribution: 'adoptopenjdk'
+          distribution: 'adoptium'
         
       - name: Package the application
         run: mvn package -DskipTests
         
       - name: Upload packaged JARs
-        uses: actions/upload-artifact@v3  # Updated version to v3
+        uses: actions/upload-artifact@v3
         with:
           name: jar-files
           path: target/*.jar
